@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author LeeSoohoon
  */
@@ -11,10 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class WelcomeController {
 
     @GetMapping(value = "/helloworld")
-    public String welcome(final String name, final int age, final Model model) {
-        System.out.println("name: " + name + " age: " + age);
-        model.addAttribute("name", name);
-        model.addAttribute("age", age);
+    public String welcome(final Model model) {
+        final List<MyModel> repo = Arrays.asList(new MyModel("ssoon"), new MyModel("jinimania"));
+        model.addAttribute("repo", repo);
         return "welcome";
     }
 }
